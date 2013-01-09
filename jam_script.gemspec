@@ -4,7 +4,7 @@ require "jam_script/version"
 
 Gem::Specification.new do |s|
   s.name        = 'jam_script'
-  s.version     = JamScript::VERSION
+  s.version     = JamScript::VERSION::STRING
   s.authors     = ["Adam Phillips"]
   s.description = 'Think markdown for the Real Book'
   s.summary     = "jam_script-#{s.version}"
@@ -15,7 +15,10 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'treetop', '~> 1.4.1'
   
-  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'minitest'
+  s.add_development_dependency 'turn'
+  s.add_development_dependency 'debugger'
+  s.add_development_dependency 'guard-minitest'
 
   s.rubygems_version = ">= 1.6.1"
   s.files            = `git ls-files`.split("\n").reject {|path| path =~ /\.gitignore$/ }
