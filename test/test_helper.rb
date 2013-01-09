@@ -2,7 +2,7 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'turn/autorun'
 
-require 'jam_script/jam'
+require 'jam_script'
 require 'debugger'
 
 Turn.config do |c|
