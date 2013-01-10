@@ -13,8 +13,8 @@ Gem::Specification.new do |s|
 
   s.platform    = Gem::Platform::RUBY
 
-  s.add_runtime_dependency 'treetop', '~> 1.4.1'
-  
+  s.add_runtime_dependency 'parslet'
+
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'turn'
   s.add_development_dependency 'debugger'

@@ -1,0 +1,1 @@
+require 'jam_script/shared/init_with_properties'

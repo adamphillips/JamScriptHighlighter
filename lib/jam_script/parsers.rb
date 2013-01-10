@@ -1,0 +1,1 @@
+require 'jam_script/parsers/chord_parser'
