@@ -6,18 +6,23 @@ describe Parsers::ChordParser do
 
     p.parse('a')[:note].to_s.must_equal 'a'
     # proc{ p.parse('h') }.must_raise(ChordParseError)
-    # p.parse('G#')[:note].to_s.must_equal 'G#'
-    # p.parse('fb')[:note].to_s.must_equal 'fb'
+  # p.parse('G#')[:note].to_s.must_equal 'G#'
+  # p.parse('fb')[:note].to_s.must_equal 'fb'
   end
 
   it 'should parse modifiers correctly' do
     p = Parsers::ChordParser.new
 
-    p.parse('a')[:modifier].must_equal []
+    p.parse('a')[:modifiers].must_equal []
     p.parse('am')[:note].to_s.must_equal 'a'
-    p.parse('am')[:modifier][0][:minor].to_s.must_equal 'm'
+    p.parse('am')[:modifiers][0][:minor].to_s.must_equal 'm'
     p.parse('am7')[:note].to_s.must_equal 'a'
-    p.parse('am7')[:modifier][0][:minor].to_s.must_equal 'm'
-    p.parse('am7')[:modifier][1][:seventh].to_s.must_equal '7'
+    p.parse('am7')[:modifiers][0][:minor].to_s.must_equal 'm'
+    p.parse('am7')[:modifiers][1][:seventh].to_s.must_equal '7'
+  end
+
+  it 'should parse the length correctly' do
+    p = Parsers::ChordParser.new
+    p.parse('a.3')[:length].to_s.must_equal '3'
   end
 end

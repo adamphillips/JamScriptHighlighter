@@ -5,6 +5,8 @@ require 'turn/autorun'
 require 'jam_script'
 require 'debugger'
 
+require 'parslet/convenience'
+
 Turn.config do |c|
  # use one of output formats:
  # :outline  - turn's original case/test outline mode [default]

@@ -1,7 +1,9 @@
 module Parsers
-  class ChordParser < Parslet::Parser
+class ChordParser < BaseParser
+    include TimingParser
+
     rule(:accidental) { str('#') | str('b') }
-    rule(:note) { match('[a-g]').repeat(1) >> accidental.maybe }
+    rule(:note) { match('[a-gA-G]').repeat(1) }
 
     rule(:minor) { str('m') }
     rule(:diminished) { str('dim') }
@@ -10,7 +12,7 @@ module Parsers
 
     rule(:modifier) { minor.as(:minor) | seventh.as(:seventh) | diminished.as(:diminished) | augmented.as(:augmented) }
 
-    rule(:chord) { note.as(:note) >> modifier.repeat.as(:modifier) }
+    rule(:chord) { note.as(:note) >> accidental.maybe >> modifier.repeat.as(:modifiers) >> length? }
 
     root :chord
   end
