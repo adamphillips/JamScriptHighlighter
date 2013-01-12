@@ -1,5 +1,5 @@
 module Transforms
-  class ChordTransform < Parslet::Transform
+  class ChordTransform < BaseTransform
     rule(
       :modifiers => subtree(:mods),
       :note => simple(:note),

@@ -1,5 +1,5 @@
 module Parsers
-class ChordParser < BaseParser
+  class ChordParser < BaseParser
     include TimingParser
 
     rule(:accidental) { str('#') | str('b') }

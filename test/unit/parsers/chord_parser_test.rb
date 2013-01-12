@@ -6,8 +6,8 @@ describe Parsers::ChordParser do
 
     p.parse('a')[:note].to_s.must_equal 'a'
     # proc{ p.parse('h') }.must_raise(ChordParseError)
-  # p.parse('G#')[:note].to_s.must_equal 'G#'
-  # p.parse('fb')[:note].to_s.must_equal 'fb'
+    # p.parse('G#')[:note].to_s.must_equal 'G#'
+    # p.parse('fb')[:note].to_s.must_equal 'fb'
   end
 
   it 'should parse modifiers correctly' do
