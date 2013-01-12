@@ -1,5 +1,7 @@
 module Parsers
   class JamParser < BaseParser
+    include Rules::ChordRules
+
     rule(:by) { str('by') >> space >> text.as(:by) >> newline? }
     rule(:tempo) { str('tempo') >> space >> text.as(:tempo) >> newline? }
 
