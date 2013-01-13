@@ -3,7 +3,7 @@ require 'test_helper'
 describe Parsers::JamParser do
   describe 'with a title' do
     before do
-      @jam = " A Jam \n"
+      @jam = " A Jam"
     end
 
     it 'should find the title' do
@@ -12,9 +12,9 @@ describe Parsers::JamParser do
 
     describe 'when there is meta data' do
       it 'should find the meta data' do
-        @jam += "by Some one\n"
+        @jam += "\nby Some one"
         jp.parse(@jam)[:metadata][0][:by].must_equal(:text => 'Some one')
-        @jam += "tempo 100bpm\n"
+        @jam += "\ntempo 100bpm"
         jp.parse(@jam)[:metadata][1][:tempo].must_equal(:text => '100bpm')
       end
     end

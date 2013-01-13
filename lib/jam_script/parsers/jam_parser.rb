@@ -1,13 +1,15 @@
 module Parsers
   class JamParser < BaseParser
+    include Rules::TimingRules
     include Rules::ChordRules
+    include Rules::SectionRules
 
-    rule(:by) { str('by') >> space >> text.as(:by) >> newline? }
-    rule(:tempo) { str('tempo') >> space >> text.as(:tempo) >> newline? }
+    rule(:by) { newline >> str('by') >> space >> text.as(:by) }
+    rule(:tempo) { newline >> str('tempo') >> space >> text.as(:tempo) }
 
-    rule(:title) { space.repeat >> text.as(:title) >> newline? }
-
-    rule(:jam) { title >> (by | tempo).repeat.as(:metadata) }
+    rule(:title) { space.repeat >> text.as(:title) }
+    rule(:metadata) { (by | tempo).repeat.as(:metadata) }
+    rule(:jam) { title >> metadata.maybe >> section.repeat.as(:sections) }
 
     root(:jam)
   end

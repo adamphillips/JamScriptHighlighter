@@ -1,8 +1,9 @@
 module Parsers
-  class ChordParser < BaseParser
+  class SectionParser < BaseParser
     include Rules::TimingRules
     include Rules::ChordRules
+    include Rules::SectionRules
 
-    root(:chord)
+    root(:section)
   end
 end

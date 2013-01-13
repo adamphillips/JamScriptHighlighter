@@ -1,20 +1,41 @@
 module Transforms
-  class JamTransform < BaseTransform
-    rule(:text => simple(:text)) { text.to_s }
-
+  class JamTransform < Parslet::Transform
     rule(:title => simple(:tl)) { {:title => tl.to_s} }
 
     rule(
-      :title => simple(:tl),
-      :metadata => subtree(:items)
+      :title => subtree(:title),
+      :metadata => subtree(:metadata)
     ) {
-      ret = {:title => tl}
       md = {}
-      items.each do |itm|
+      metadata.each do |itm|
         md[itm.first[0]] = itm.first[1]
       end
-      ret[:metadata] = md
-      ret
+      {:title => title, :metadata => Transforms::JamTransform.process_metadata(md)}
     }
+
+    rule(
+      :title => subtree(:title),
+      :metadata => subtree(:md),
+      :sections => subtree(:sections)
+    ) {
+      {:title => title, :metadata => Transforms::JamTransform.process_metadata(md), :sections => Transforms::JamTransform.process_sections(sections)}
+    }
+
+    def self.process_metadata metadata
+      md = {}
+      metadata.each do |itm|
+        md[itm.first[0]] = itm.first[1]
+      end
+      md
+    end
+
+    def self.process_sections sections
+      s = {}
+      sections.each do |itm|
+        s[itm[:section][:title][:text].to_s || itm[:section][:title].to_s] = itm
+      end
+      s
+    end
+
   end
 end
