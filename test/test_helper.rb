@@ -3,6 +3,9 @@ require 'minitest/autorun'
 require 'turn/autorun'
 
 require 'jam_script'
+require 'hirb'
+require 'wirble'
+
 require 'debugger'
 
 require 'parslet/convenience'
