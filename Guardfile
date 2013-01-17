@@ -1,6 +1,12 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
+def run testfile
+  cmd = "rake test TEST='#{testfile}'"
+  out cmd
+  exec cmd
+end
+
 guard 'minitest' do
   # with Minitest::Unit
   watch(%r|^test/(.*)\/?test_(.*)\.rb|)

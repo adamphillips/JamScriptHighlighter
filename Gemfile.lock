@@ -1,14 +1,12 @@
 PATH
   remote: .
   specs:
-    jam_script (0.0.1)
-      parslet
+    jam_script_highlighter (0.0.1)
 
 GEM
   remote: http://rubygems.org/
   specs:
     ansi (1.4.3)
-    blankslate (2.1.2.4)
     coderay (1.0.8)
     columnize (0.3.6)
     debugger (1.2.3)
@@ -30,8 +28,6 @@ GEM
     lumberjack (1.0.2)
     method_source (0.8.1)
     minitest (4.4.0)
-    parslet (1.5.0)
-      blankslate (~> 2.0)
     pry (0.9.10)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -50,7 +46,7 @@ DEPENDENCIES
   debugger
   guard-minitest
   hirb
-  jam_script!
+  jam_script_highlighter!
   minitest
   rb-fsevent (~> 0.9.1)
   turn

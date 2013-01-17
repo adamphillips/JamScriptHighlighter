@@ -2,13 +2,20 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'turn/autorun'
 
-require 'jam_script'
 require 'hirb'
 require 'wirble'
 
 require 'debugger'
 
-require 'parslet/convenience'
+require 'support/colors'
+require 'support/output'
+require 'support/jams/jams'
+
+require 'jam_script_highlighter'
+
+def h text
+  JamScriptHighlighter.highlight text
+end
 
 Turn.config do |c|
  # use one of output formats:
@@ -24,3 +31,4 @@ Turn.config do |c|
  # use humanized test names (works only with :outline format)
  c.natural = true
 end
+
