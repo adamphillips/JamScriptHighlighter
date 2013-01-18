@@ -18,8 +18,9 @@ h4 {font-weight: 400; font-size: 18px;}
 
 p {font-size: 17px}
 
-.note {color: #505050; font-size: 15px; margin-bottom: 0px; margin-top: 4px; font-style: italic;}
+.note {color: #505050; font-size: 13px; margin-bottom: 0px; margin-top: 4px; font-style: italic;}
 .control, .section {margin-top: 25px; margin-bottom: 0px; border-bottom: 5px solid #d0d0d0}
+.variation {font-size: 16px; margin-top: 15px; margin-bottom: 0px; border-bottom: 1px solid #d0d0d0}
 
 
 </style>
@@ -50,16 +51,18 @@ ARGV.each do |a|
       "<h1>#{line[:line]}</h1>"
     when :metadata
       "<h2>#{line[:line]}</h2>"
-    when :section
-      "<h4 class=\"section\">#{line[:line]}</h4>"
     when :control
       "<h3 class=\"control\">#{line[:line]}</h3>"
+    when :section
+      "<h4 class=\"section\">#{line[:line]}</h4>"
+    when :variation
+      "<h4 class=\"variation\">#{line[:line]}</h4>"
     when :note
       "<p class=\"note\">#{line[:line]}</p>"
     when :other
       "<p>#{line[:line]}</p>"
     else
-      ''
+      line[:line] || ''
     end + "\n"
   end
 

@@ -2,6 +2,7 @@ module JamScriptHighlighter
   CONTROL = '#'
   NOTE = '!'
   SECTION = '*'
+  VARIATION = '-'
 
   class << self
     def highlight(string)
@@ -21,7 +22,7 @@ module JamScriptHighlighter
 
     def process line
       type = type_of line
-      if [:control, :note, :section].include?(type)
+      if [:control, :note, :section, :variation].include?(type)
         line = line[1..line.length].strip
         @ctrl_char_set = true
       elsif type == :empty
@@ -44,6 +45,8 @@ module JamScriptHighlighter
         :note
       when SECTION
         :section
+      when VARIATION
+        :variation
       else
         :other
       end
