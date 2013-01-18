@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+
+require 'jam_script_highlighter'
+
+template = "
+<html>
+<head>
+<title>{{ title }}</title>
+<style>
+body {font-family: arial; font-size: 16px;}
+
+h1 {font-weight: 400; font-size: 20px; margin-bottom: 2px;}
+h2 {font-weight: 400; font-size: 18px; margin-top: 0px}
+h3 {font-weight: 400; font-size: 18px;}
+h4 {font-weight: 400; font-size: 18px;}
+
+.container {width: 80%; margin: 0px auto; padding: 20px;-moz-column-count: 2;-webkit-column-count: 2;column-count: 2;}
+
+p {font-size: 17px}
+
+.note {color: #505050; font-size: 15px; margin-bottom: 0px; margin-top: 4px; font-style: italic;}
+.control, .section {margin-top: 25px; margin-bottom: 0px; border-bottom: 5px solid #d0d0d0}
+
+
+</style>
+</head>
+<body>
+  <div class=\"container\">
+    {{ yield }}
+  </div>
+</body>
+</html>
+"
+
+ARGV.each do |a|
+  puts "Reading #{a}\n"
+  file = File.open(a, 'r')
+
+  js = file.read
+  html = ""
+  title = ""
+  puts "#{js}\n"
+
+  js = JamScriptHighlighter.highlight(js)
+
+  js.each do |line|
+    html += case line[:type]
+    when :title
+      title = line[:line]
+      "<h1>#{line[:line]}</h1>"
+    when :metadata
+      "<h2>#{line[:line]}</h2>"
+    when :section
+      "<h4 class=\"section\">#{line[:line]}</h4>"
+    when :control
+      "<h3 class=\"control\">#{line[:line]}</h3>"
+    when :note
+      "<p class=\"note\">#{line[:line]}</p>"
+    when :other
+      "<p>#{line[:line]}</p>"
+    else
+      ''
+    end + "\n"
+  end
+
+  template = template.gsub '{{ title }}', title
+  html = template.gsub '{{ yield }}', html
+
+  puts "<< Rendered >>\n#{html}"
+
+  output = File.open("#{a}.html", 'w')
+  output << html
+
+  file.close
+  output.close
+end
