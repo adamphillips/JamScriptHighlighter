@@ -2,10 +2,13 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'turn/autorun'
 
-require 'hirb'
-require 'wirble'
+begin
+  require 'hirb'
+  require 'wirble'
 
-require 'debugger'
+  require 'debugger'
+rescue
+end
 
 require 'support/colors'
 require 'support/output'
