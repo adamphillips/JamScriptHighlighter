@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rb-fsevent', '~> 0.9.1'
   s.add_development_dependency 'hirb'
   s.add_development_dependency 'wirble'
+  s.add_development_dependency 'cover_me'
 
   s.rubygems_version = ">= 1.6.1"
   s.files            = `git ls-files`.split("\n").reject {|path| path =~ /\.gitignore$/ }
