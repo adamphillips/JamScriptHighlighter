@@ -17,6 +17,10 @@ def h text
   JamScriptHighlighter.highlight text
 end
 
+def htmlr text
+  JamScriptHighlighter::Html.render text
+end
+
 Turn.config do |c|
  # use one of output formats:
  # :outline  - turn's original case/test outline mode [default]

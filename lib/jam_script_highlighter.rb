@@ -1,3 +1,5 @@
+require 'jam_script_highlighter/html'
+
 module JamScriptHighlighter
   CONTROL = '#'
   NOTE = '!'

@@ -42,29 +42,7 @@ ARGV.each do |a|
   title = ""
   puts "#{js}\n"
 
-  js = JamScriptHighlighter.highlight(js)
-
-  js.each do |line|
-    html += case line[:type]
-    when :title
-      title = line[:line]
-      "<h1>#{line[:line]}</h1>"
-    when :metadata
-      "<h2>#{line[:line]}</h2>"
-    when :control
-      "<h3 class=\"control\">#{line[:line]}</h3>"
-    when :section
-      "<h4 class=\"section\">#{line[:line]}</h4>"
-    when :variation
-      "<h4 class=\"variation\">#{line[:line]}</h4>"
-    when :note
-      "<p class=\"note\">#{line[:line]}</p>"
-    when :other
-      "<p>#{line[:line]}</p>"
-    else
-      line[:line] || ''
-    end + "\n"
-  end
+  html = JamScriptHighlighter::Html.render js
 
   template = template.gsub '{{ title }}', title
   html = template.gsub '{{ yield }}', html
