@@ -51,7 +51,7 @@ module JamScriptHighlighter
         when :note
           "<p class=\"note\">#{line[:line]}</p>"
         when :other
-          "<p>#{line[:line]}</p>"
+          "<p class=\"other\">#{line[:line]}</p>"
         else
           line[:line] || ''
         end + "\n"

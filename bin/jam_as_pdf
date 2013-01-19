@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'pdfkit'
 require 'jam_script_highlighter'
 
 template = "
@@ -60,14 +61,18 @@ ARGV.each do |a|
     template = template.gsub '{{ title }}', title
     html = template.gsub '{{ yield }}', html
 
-    output = File.open("#{a}.html", 'w')
-    output << html
+    kit = PDFKit.new(html, :page_size => 'A4')
+
+    # Get an inline PDF
+    pdf = kit.to_pdf
+
+    # Save the PDF to a file
+    kit.to_file("#{a}.pdf")
 
     file.close
-    output.close
 
-    puts "<< Rendered to #{a}.html >>\n"
+    puts "<< Rendered to #{a}.pdf >>"
 
-    `open #{a}.html`
+    `open #{a}.pdf`
   end
 end

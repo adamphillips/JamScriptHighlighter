@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
 
   s.platform    = Gem::Platform::RUBY
 
+  s.add_dependency 'pdfkit'
+
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'turn'
   s.add_development_dependency 'debugger'
