@@ -1,0 +1,7 @@
+source "http://rubygems.org"
+
+gem 'rake'
+
+gem 'minitest'
+gem 'turn'
+gem 'rb-fsevent', '~> 0.9.1'
