@@ -7,8 +7,6 @@ require 'wirble'
 
 require 'debugger'
 
-require 'cover_me'
-
 require 'support/colors'
 require 'support/output'
 require 'support/jams/jams'
