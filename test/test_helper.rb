@@ -7,7 +7,7 @@ begin
   require 'wirble'
 
   require 'debugger'
-rescue
+rescue LoadError
 end
 
 require 'support/colors'
