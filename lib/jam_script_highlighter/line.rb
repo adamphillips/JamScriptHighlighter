@@ -13,7 +13,7 @@ module JamScriptHighlighter
           cls = JamScriptHighlighter::LineTypes.const_get(class_name)
           cls.new text
         else
-          ret = super
+          ret = super()
           ret.text = text
 
           ret
