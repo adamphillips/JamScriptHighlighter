@@ -1,4 +1,6 @@
 require 'jam_script_highlighter/html'
+require 'jam_script_highlighter/line'
+require 'jam_script_highlighter/line_types'
 
 module JamScriptHighlighter
   CONTROL = '#'

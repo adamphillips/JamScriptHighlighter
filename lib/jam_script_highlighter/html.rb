@@ -17,43 +17,33 @@ module JamScriptHighlighter
         @html
       end
 
-      def render_line line
-        @html += case line[:type]
-        when :title
-          title = line[:line]
-          "<h1>#{line[:line]}</h1>"
-        when :metadata
-          "<h2>#{line[:line]}</h2>"
+      def render_line line_details
+        line = Line.new(line_details[:line], line_details[:type])
+
+        @html += case line_details[:type]
         when :control
           ret = ''
           if @processing_section
             ret += "</div>\n\n"
             @processing_section = false
           end
-          ret += "<h3 class=\"control\">#{line[:line]}</h3>\n"
-          @section_type = line[:line].downcase
+          ret += line.to_html
+          @section_type = line.text.downcase
           ret += "<div class=\"#{@section_type}\">"
           ret
-
         when :section
           ret = ''
           ret += "</div>\n\n" if @processing_section
 
-          ret += "<h4 class=\"section\">#{line[:line]}</h4>\n"
+          ret += line.to_html
           ret += "<div class=\"#{@section_type}\">"
 
           @processing_metadata = false
           @processing_section = true
 
           ret
-        when :variation
-          "<h4 class=\"variation\">#{line[:line]}</h4>"
-        when :note
-          "<p class=\"note\">#{line[:line]}</p>"
-        when :other
-          "<p class=\"other\">#{line[:line]}</p>"
         else
-          line[:line] || ''
+          line.to_html
         end + "\n"
       end
     end
