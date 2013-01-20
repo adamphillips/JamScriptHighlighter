@@ -1,8 +1,8 @@
 JamScript Highligher
 --------------------
 
-[![Build Status](https://secure.travis-ci.org/adamphillips/jam_script_highlighter.png?branch=master)](http://travis-ci.org/adamphillips/jam_script_highlighter)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/adamphillips/jam_script_highlighter)
+[![Build Status](https://secure.travis-ci.org/adamphillips/JamScriptHighlighter.png?branch=master)](http://travis-ci.org/adamphillips/JamScriptHighlighter)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/adamphillips/JamScriptHighlighter)
 
 SyntaxHighlighter for [JamScript](https://github.com/adamphillips/JamScript)
 
