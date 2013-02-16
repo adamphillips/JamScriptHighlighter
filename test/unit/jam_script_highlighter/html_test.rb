@@ -7,7 +7,7 @@ describe JamScriptHighlighter::Html do
         @jam = ''
       end
 
-      describe 'containing just a title' do
+      describe 'containing a title' do
         before do
           @jam += "Some jam\n"
         end
@@ -21,8 +21,8 @@ describe JamScriptHighlighter::Html do
             @jam += "by Some one\n"
           end
 
-          it 'should wrap the metadata in a metadata div' do
-            htmlr(@jam).must_match %r{<h2>by Some one</h2>}
+          it 'should wrap the metadata in a metadata h2' do
+            htmlr(@jam).must_match %r{<h2 class="metadata">by Some one</h2>}
           end
 
           describe 'containing a section' do
