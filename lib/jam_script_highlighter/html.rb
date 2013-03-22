@@ -26,6 +26,9 @@ module JamScriptHighlighter
           ret += line.to_html
           @section_type = line.text.downcase
           ret += "<div class=\"#{@section_type}\">"
+
+          @processing_section = true
+
           ret
         when :section
           ret = ''
