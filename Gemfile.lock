@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jam_script_highlighter (0.0.1)
+    jam_script_highlighter (0.0.2)
       pdfkit
 
 GEM
