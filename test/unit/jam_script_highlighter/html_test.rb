@@ -40,7 +40,11 @@ describe JamScriptHighlighter::Html do
               end
 
               it 'should wrap the chords in a containing div' do
-                htmlr(@jam).must_match %r{<div class="chords">\s*.*C F | G.*\s*<\/div>}
+                htmlr(@jam).must_match %r{<div class="chords">\nC F | G\n</div>}
+              end
+
+              it 'should not include an uneccessary closing div' do
+                htmlr(@jam).wont_match %r{</div>\n</div>}
               end
 
               describe 'containing a structure' do
@@ -53,7 +57,7 @@ describe JamScriptHighlighter::Html do
                 end
 
                 it 'should wrap the structure in a structure div' do
-                  htmlr(@jam).must_match %r{<div class="structure">\s*.*Verse, Chorus.*\s*</div>}
+                  htmlr(@jam).must_match %r{<div class="structure">\nVerse, Chorus\n</div>}
                 end
               end
             end
