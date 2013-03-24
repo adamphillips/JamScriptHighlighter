@@ -46,11 +46,18 @@ module JamScriptHighlighter
           ret += "</div>\n\n" and @processing_section = false if @processing_section
 
           ret += line.to_html
-          ret += "<div class=\"#{@section_type}\">"
+          ret += "<div class=\"group\">"
 
           @processing_section = true
 
           ret
+        when :other
+          case @section_type
+          when 'chords'
+            "<p class=\"#{@section_type}\">#{line.to_html.strip}</p>"
+          else
+            line.to_html
+          end
         else
           line.to_html
         end + "\n"

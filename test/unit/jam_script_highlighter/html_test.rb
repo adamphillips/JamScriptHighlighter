@@ -39,12 +39,40 @@ describe JamScriptHighlighter::Html do
                 @jam += "C F | G\n"
               end
 
-              it 'should wrap the chords in a containing div' do
-                htmlr(@jam).must_match %r{<div class="chords">\nC F | G\n</div>}
+              it 'should wrap the whole thing in a group div' do
+                htmlr(@jam).must_match %r{<div class="group">\n<p class="chords">C F | G</p>\n</div>}
+              end
+
+              it 'should wrap the chords in a containing p' do
+                htmlr(@jam).must_match %r{<p class="chords">C F | G</p>}
               end
 
               it 'should not include an uneccessary closing div' do
                 htmlr(@jam).wont_match %r{</div>\n</div>}
+              end
+
+              describe 'with a note' do
+                before do
+                  @jam += "! Something important\n"
+                end
+
+                it 'should wrap the note in a p' do
+                  htmlr(@jam).must_match %r{<p class="note">Something important</p>}
+                end
+              end
+
+              describe 'with a variation' do
+                before do
+                  @jam += "- A variation\nC | Am G\n"
+                end
+
+                it 'should wrap the variation in an h4' do
+                  htmlr(@jam).must_match %r{<h4 class="variation">A variation</h4>}
+                end
+
+                it 'should wrap the chords in a p' do
+                  htmlr(@jam).must_match %r{<div class="group">\n(.*)<p class="chords">C | Am G</p>\n(.*)</div>\n}
+                end
               end
 
               describe 'containing a structure' do
