@@ -45,8 +45,8 @@ module JamScriptHighlighter
           ret = ''
           ret += "</div>\n\n" and @processing_section = false if @processing_section
 
-          ret += line.to_html
           ret += "<div class=\"group\">"
+          ret += line.to_html
 
           @processing_section = true
 
